@@ -1,0 +1,4 @@
+certifi==2020.12.5
+fastapi==0.70.1
+msgpack_python==0.5.6
+pymongo==4.0.1

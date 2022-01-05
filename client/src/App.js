@@ -6,11 +6,8 @@ import {Header} from "./components/Header";
 import {Filter} from "./components/Filter";
 import {Stat} from "./components/Stat";
 import {DataViewer} from "./components/DataViewer";
-import { updateAge, updateSex, updateHappy, updateSad, updateAngry,
-    updateSurprised, updateAfraid, updateDisgusted,
-    updateNeutral, updateRace } from './app/reducers/filterSlice'
-import { updateData } from './app/reducers/statSlice'
-import { getData, buildData } from './client/client.js'
+import { updateData } from './app/reducers/statSlice';
+import { getData, buildData } from './client/client.js';
 
 function App() {
     const page = useSelector((state) => state.page.page)

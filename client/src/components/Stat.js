@@ -1,15 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import InputRange from 'react-input-range';
 import { VictoryPie } from "victory";
 import { VictoryTheme } from "victory";
-import { VictoryTooltip } from "victory";
 import { VictoryHistogram } from "victory";
 import { VictoryChart } from "victory";
 import { VictoryArea } from "victory";
 import { VictoryPolarAxis } from "victory";
-import { VictoryLabel } from "victory";
-import { merge, random, range } from "lodash";
 import { updateEmotion } from '../app/reducers/statSlice'
 
 import styles from '../styles/Stat.css';
@@ -34,27 +30,27 @@ export function Stat() {
     }
     const pieData = []
     var index = 0
-    if (d[0] != 0) {
+    if (d[0] !== 0) {
       pieData[index] = { x: 'Caucasoid', y: d[0] }
       index++;
     }
-    if (d[1] != 0) {
+    if (d[1] !== 0) {
       pieData[index] = { x: 'Negroid', y: d[1] }
       index++;
     }
-    if (d[2] != 0) {
+    if (d[2] !== 0) {
       pieData[index] = { x: 'Ethiopian', y: d[2] }
       index++;
     }
-    if (d[3] != 0) {
+    if (d[3] !== 0) {
       pieData[index] = { x: 'Mongoloid', y: d[3] }
       index++;
     }
-    if (d[4] != 0) {
+    if (d[4] !== 0) {
       pieData[index] = { x: 'Americanoid', y: d[4] }
       index++;
     }
-    if (d[5] != 0) {
+    if (d[5] !== 0) {
       pieData[index] = { x: 'Weddo-australoid', y: d[5] }
       index++;
     }

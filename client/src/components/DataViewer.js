@@ -1,7 +1,5 @@
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import InputRange from 'react-input-range';
-import styles from '../styles/DataView.css';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { DataGrid } from '@mui/x-data-grid';
 
 const columns = [
@@ -17,7 +15,7 @@ const columns = [
     headerName: 'Sex',
     width: 90,
     valueFormatter: (params) => {
-              if (params.value == 0) {
+              if (params.value === 0) {
                 return 'male'
               } else {
                 return 'female'
@@ -71,17 +69,17 @@ const columns = [
     headerName: 'Race',
     width: 150,
     valueFormatter: (params) => {
-              if (params.value == 0) {
+              if (params.value === 0) {
                 return 'Caucasoid'
-              } else if (params.value == 1) {
+              } else if (params.value === 1) {
                 return 'Negroid'
-              } else if (params.value == 2) {
+              } else if (params.value === 2) {
                 return 'Ethiopian'
-              } else if (params.value == 3) {
+              } else if (params.value === 3) {
                 return 'Mongoloid'
-              } else if (params.value == 4) {
+              } else if (params.value === 4) {
                 return 'Americanoid'
-              } else if (params.value == 5) {
+              } else if (params.value === 5) {
                 return 'Weddo-australoid'
               }
             },
