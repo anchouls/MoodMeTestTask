@@ -1,0 +1,17 @@
+.block {
+  display: flex;
+}
+
+.block-item {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.block-item-button {
+  width: 150px;
+}
+
+.selected {
+    background-color: #7d939e;
+}

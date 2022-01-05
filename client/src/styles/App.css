@@ -1,0 +1,18 @@
+.App {
+  text-align: center;
+  background-color: #c3ccd3;
+}
+
+.site-body {
+  height: 95vh;
+  display: flex;
+  width: 100%;
+  font-size: calc(10px + 1vmin);
+}
+
+.main {
+  float: right;
+  background-color: #c3ccd3;
+  height: 100%;
+  width: 70%;
+}
