@@ -5,6 +5,8 @@ from random import seed
 from fastapi import FastAPI, WebSocket
 from fastapi.middleware.cors import CORSMiddleware
 import msgpack
+from fastapi.responses import RedirectResponse
+from fastapi.staticfiles import StaticFiles
 
 app = FastAPI()
 app.add_middleware(
@@ -14,31 +16,19 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+app.mount("/site", StaticFiles(directory="site"), name="site")
+
 client = pymongo.MongoClient(os.environ['DB_URL'], tlsCAFile=certifi.where())
 db = client.college
 
 
 @app.get("/")
-def read_root():
-    return {"Hello": "World"}
+async def redirect():
+    return RedirectResponse(url='/site/index.html')
 
-seed(1)
 
 @app.websocket("/get_data")
 async def read_item(ws: WebSocket):
-    # for i in range(100):
-    #     name = names.get_full_name()
-    #     age = randint(14, 100)
-    #     sex = randint(0, 1)
-    #     happy = random()
-    #     sad = random()
-    #     angry = random()
-    #     surprised = random()
-    #     afraid = random()
-    #     disgusted = random()
-    #     neutral = random()
-    #     race = randint(0, 5)
-    #     db["people"].insert_one({'name': name, 'age': age, 'sex': sex, 'happy': happy, 'sad': sad, 'angry': angry, 'surprised': surprised, 'afraid': afraid, 'disgusted': disgusted, 'neutral': neutral, 'race': race})
     await ws.accept()
     while True:
         data = await ws.receive_bytes()
