@@ -1,7 +1,7 @@
 import { unpack, pack } from 'msgpackr';
 
 var consu;
-var ws = new WebSocket("ws://localhost:8000/get_data");
+var ws = new WebSocket("ws://moodme-test.azurewebsites.net/get_data");
 ws.onmessage = function(event) {
     var reader = new FileReader();
 
