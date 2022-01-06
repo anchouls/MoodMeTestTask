@@ -3,3 +3,5 @@ fastapi==0.70.1
 msgpack_python==0.5.6
 pymongo==4.0.1
 uvicorn==0.16.0
+dnspython==2.1.0
+websockets==10.1
