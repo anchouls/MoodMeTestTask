@@ -1,33 +1,22 @@
 import { unpack, pack } from 'msgpackr';
+import axios from 'axios';
 
+const url = "http://moodme-test.azurewebsites.net/get_data";
 var consu;
-var ws = new WebSocket("ws://moodme-test.azurewebsites.net/get_data");
-ws.onmessage = function(event) {
-    var reader = new FileReader();
-
-    reader.onload = () => {
-        const buffer = new Uint8Array(reader.result);
-        var answer = unpack(buffer);
-        consu(answer);
-    };
-    reader.readAsArrayBuffer(event.data);
-};
-
-const waitForConnection = function (callback, interval) {
-    if (ws.readyState === 1) {
-        callback();
-    } else {
-        setTimeout(function () {
-            waitForConnection(callback, interval);
-        }, interval);
-    }
-};
 
 export function getData(data, consumer) {
-    waitForConnection(function() {
-      ws.send(pack(data));
-      consu = consumer;
-    }, 1000);
+    consu = consumer;
+    console.log(pack(data));
+    console.log(unpack(pack(data)));
+    fetch(url, {
+        method: 'POST',
+        body: pack(data),
+        headers: new Headers({'content-type': 'text/plain'})
+    }).then((res) => {
+        return res.arrayBuffer();
+    }).then((data) => {
+        consu(unpack(new Uint8Array(data)));
+    }).catch((err) => console.log(err));
 }
 
 

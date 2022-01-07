@@ -1,11 +1,12 @@
 import os
+from typing import Any
 import certifi as certifi
 import pymongo as pymongo
 from random import seed
-from fastapi import FastAPI, Response
+from fastapi import FastAPI, Response, Body
 from fastapi.middleware.cors import CORSMiddleware
 import msgpack
-from fastapi.responses import RedirectResponse
+from fastapi.responses import RedirectResponse, PlainTextResponse
 from fastapi.staticfiles import StaticFiles
 
 app = FastAPI()
@@ -48,5 +49,5 @@ async def get_data(data: Any = Body(..., media_type="text/plain")):
         p['_id'] = str(p['_id'])
         answer.append(p)
     answer = msgpack.packb(answer, use_bin_type=True)
-    return answer
+    return PlainTextResponse(answer)
 
